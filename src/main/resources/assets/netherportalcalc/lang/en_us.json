@@ -1,0 +1,13 @@
+{
+  "itemGroup.netherportalcalc": "Example Mod Tab",
+  "block.netherportalcalc.example_block": "Example Block",
+  "item.netherportalcalc.example_item": "Example Item",
+
+  "netherportalcalc.configuration.title": "nether-portal-calc Configs",
+  "netherportalcalc.configuration.section.netherportalcalc.common.toml": "nether-portal-calc Configs",
+  "netherportalcalc.configuration.section.netherportalcalc.common.toml.title": "nether-portal-calc Configs",
+  "netherportalcalc.configuration.items": "Item List",
+  "netherportalcalc.configuration.logDirtBlock": "Log Dirt Block",
+  "netherportalcalc.configuration.magicNumberIntroduction": "Magic Number Text",
+  "netherportalcalc.configuration.magicNumber": "Magic Number"
+}
