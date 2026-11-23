@@ -2,8 +2,10 @@ package knickbig.portalcalc;
 
 import com.mojang.brigadier.Command;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.player.LocalPlayer;
 import net.minecraft.commands.Commands;
 import net.minecraft.network.chat.Component;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.level.Level;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.SubscribeEvent;
@@ -22,19 +24,22 @@ public final class PortalCalcClient {
     }
 
     private static int calculateCoordinates() {
-        var player = Minecraft.getInstance().player;
+        LocalPlayer player = Minecraft.getInstance().player;
         if (player == null) {
             return 0;
         }
 
-        var dimension = player.level().dimension();
-        if (dimension == Level.END) {
-            player.displayClientMessage(
-                    Component.literal("Portal calculation is not available in the End."),
-                    false
-            );
-            return Command.SINGLE_SUCCESS;
-        }
+        try (Level level = player.level()){
+            ResourceKey<Level> dimension = level.dimension();
+            if (dimension == Level.END) {
+                player.displayClientMessage(
+                        Component.literal("Portal calculation is not available in the End."),
+                        false
+                );
+                return Command.SINGLE_SUCCESS;
+            }
+
+
 
         double multiplier;
         String destination;
@@ -60,5 +65,8 @@ public final class PortalCalcClient {
                 false
         );
         return Command.SINGLE_SUCCESS;
+        } catch (Exception e) {
+            throw new RuntimeException();
+        }
     }
 }
